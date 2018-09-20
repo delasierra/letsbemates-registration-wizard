@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
+import { BrowserRouter } from 'react-router-dom';
 import OrderForm from './scenes/orderForm/OrderForm';
 // import { TweenMax, Elastic } from 'gsap';
 import './styles/index.css';
@@ -7,10 +7,12 @@ import './styles/index.css';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header" />
-        <OrderForm />
-      </div>
+      <BrowserRouter>
+        <div className="app-container">
+          <header className="App-header" />
+          <OrderForm />
+        </div>
+      </BrowserRouter>
     );
   }
 }

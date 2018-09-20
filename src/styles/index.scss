@@ -4,5 +4,10 @@
 // Bootstrap library
 @import 'bootstrap/scss/bootstrap';
 
-// Mate styles
+// MATE STYLES
+//
+@import '../app';
 @import '../components/abandonedCart/abandonedCart';
+
+// Scenes
+@import '../scenes/orderForm/orderForm';
