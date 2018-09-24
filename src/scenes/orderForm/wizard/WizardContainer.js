@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 
 import { Wizard, Steps, Step } from 'react-albus';
 
@@ -11,7 +11,7 @@ import NbnStep from './steps/nbnStep/NbnStep';
 import PlanConfiguratorStep from './steps/planConfiguratorStep/PlanConfiguratorStep';
 import SummaryStep from './steps/summaryStep/SummaryStep';
 
-import Navigation from './navigation/Navigation';
+import WizardNavigation from './wizardNavigation/WizardNavigation';
 
 const WizardContainer = props => (
   /* TODO: 
@@ -19,38 +19,50 @@ const WizardContainer = props => (
   * Create logic with Array
   * Add routing to steps
   */
-  <div className="wizard-container">
-    <Route
-      render={({ history }) => (
-        <Wizard history={history}>
-          <Steps>
-            <Step id={props.routes.plan}>
-              <PlanConfiguratorStep />
-            </Step>
-            <Step id={props.routes.abandonedCart}>
-              <AbandonedCart />
-            </Step>
-            <Step id={props.routes.adsl}>
-              <AdslStep />
-            </Step>
-            <Step id={props.routes.nbn}>
-              <NbnStep />
-            </Step>
-            <Step id={props.routes.mobile}>
-              <MobileStep />
-            </Step>
-            <Step id={props.routes.summary}>
-              <SummaryStep />
-            </Step>
-            <Step id={props.routes.checkout}>
-              <CheckoutStep />
-            </Step>
-          </Steps>
-          <Navigation />
-        </Wizard>
-      )}
-    />
-  </div>
+
+  console.log('WizardContainer', props),
+  (
+    <div className="wizard-container">
+      <Route
+        render={({ history }) => (
+          <Wizard history={history}>
+            <div className="steps">
+              <Steps>
+                <Step id={props.routes.plan.id}>
+                  <PlanConfiguratorStep />
+                </Step>
+
+                <Step id={props.routes.abandonedCart.id}>
+                  <AbandonedCart />
+                </Step>
+
+                <Step id={props.routes.adsl.id}>
+                  <AdslStep />
+                </Step>
+
+                <Step id={props.routes.nbn.id}>
+                  <NbnStep />
+                </Step>
+
+                <Step id={props.routes.mobile.id}>
+                  <MobileStep />
+                </Step>
+
+                <Step id={props.routes.summary.id}>
+                  <SummaryStep />
+                </Step>
+
+                <Step id={props.routes.checkout.id}>
+                  <CheckoutStep />
+                </Step>
+              </Steps>
+            </div>
+            <WizardNavigation />
+          </Wizard>
+        )}
+      />
+    </div>
+  )
 );
 
-export default WizardContainer;
+export default withRouter(WizardContainer);

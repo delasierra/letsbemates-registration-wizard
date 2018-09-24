@@ -1,18 +1,18 @@
 import React from 'react';
 import { WithWizard } from 'react-albus';
 
-const Navigation = () => (
+const WizardNavigation = () => (
   <WithWizard
     render={({ next, previous, step, steps }) => (
-      <div className="example-buttons">
+      <div className="wizard-navigation">
         {steps.indexOf(step) > 0 && (
-          <button className="btn btn-danger" onClick={previous}>
+          <button className="btn btn-danger btn-lg" onClick={previous}>
             Back
           </button>
         )}
 
         {steps.indexOf(step) < steps.length - 1 && (
-          <button className="btn btn-primary" onClick={next}>
+          <button className="btn btn-primary btn-lg" onClick={next}>
             Next
           </button>
         )}
@@ -21,4 +21,4 @@ const Navigation = () => (
   />
 );
 
-export default Navigation;
+export default WizardNavigation;

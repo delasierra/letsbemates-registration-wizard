@@ -2,7 +2,9 @@ import React from 'react';
 
 const ShoppingCart = props => (
   //
-  <h1>This is ShoppingCart component</h1>
+  <div className="shopping-cart">
+    <h1>This is ShoppingCart component</h1>
+  </div>
 );
 
 export default ShoppingCart;

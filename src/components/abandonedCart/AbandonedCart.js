@@ -7,7 +7,7 @@ function AbandonedCart(props) {
   */
 
   return (
-    <div>
+    <div className="bandoned-cart">
       <div className="form-group">
         <label for="exampleInputEmail1">Email address</label>
         <input
