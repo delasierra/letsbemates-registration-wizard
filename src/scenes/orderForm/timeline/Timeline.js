@@ -17,8 +17,8 @@ const Timeline = props => {
 
   const getStateStyle = (stepIndex, props) => {
     const currentStepId = props.location.pathname.substr(1);
-    const currentStepIndex = getStepIndex(currentStepId);
-    if (stepIndex <= currentStepIndex) {
+    const activeStepIndex = getStepIndex(currentStepId);
+    if (stepIndex <= activeStepIndex) {
       return 'active';
     } else {
       return 'disabled';

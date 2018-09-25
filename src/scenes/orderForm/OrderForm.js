@@ -5,20 +5,21 @@ import WizardContainer from './wizard/WizardContainer';
 import Timeline from './timeline/Timeline';
 import StepModel from './wizard/steps/StepModel';
 
-import { STEP_ROUTES, STEP_LABELS } from './OrderFormData';
+import { STEP_ROUTES } from './OrderFormRoutes';
+import { MENU_LABELS } from './OrderFormLabels';
 
 import AbandonedCart from '../../components/abandonedCart/AbandonedCart';
 import AdslStep from './wizard/steps/adslStep/AdslStep';
 import CheckoutStep from './wizard/steps/checkoutStep/CheckoutStep';
 import MobileStep from './wizard/steps/mobileStep/MobileStep';
 import NbnStep from './wizard/steps/nbnStep/NbnStep';
-import PlanConfigStep from './wizard/steps/planConfiguratorStep/PlanConfigStep';
+import PlanConfigStep from './wizard/steps/planConfigStep/PlanConfigStep';
 import SummaryStep from './wizard/steps/summaryStep/SummaryStep';
 
 class OrderForm extends Component {
   // TODO: create this var dynamic from plan configuration
-  // TODO: Add userCofing as state to update timeline and wizardcontainer
   userConfig = [
+    // TODO: Add userCofing as state to update timeline and wizardcontainer
     STEP_ROUTES.plan,
     STEP_ROUTES.abanCart,
     STEP_ROUTES.adsl,
@@ -29,9 +30,9 @@ class OrderForm extends Component {
   ];
 
   // Life hooks
-  componentDidMount() {
-    console.log('OrderForm', this.props);
-  }
+  // componentDidMount() {
+  //   console.log('OrderForm', this.props);
+  // }
 
   // Methods
   getSteps = () => {
@@ -46,27 +47,87 @@ class OrderForm extends Component {
     let step;
     switch (stepId) {
       case STEP_ROUTES.abanCart:
-        step = new StepModel(index, STEP_ROUTES.abanCart, STEP_LABELS.abanCart, <AbandonedCart />);
+        step = new StepModel(
+          index,
+          STEP_ROUTES.abanCart,
+          MENU_LABELS.abanCart,
+          <AbandonedCart onAction={() => this.onStepAction(stepId)} />
+        );
         break;
       case STEP_ROUTES.adsl:
-        step = new StepModel(index, STEP_ROUTES.adsl, STEP_LABELS.adsl, <AdslStep />);
+        step = new StepModel(
+          index,
+          STEP_ROUTES.adsl,
+          MENU_LABELS.adsl,
+          <AdslStep onAction={() => this.onStepAction(stepId)} />
+        );
         break;
       case STEP_ROUTES.mobile:
-        step = new StepModel(index, STEP_ROUTES.mobile, 'Mobile', <MobileStep />);
+        step = new StepModel(
+          index,
+          STEP_ROUTES.mobile,
+          'Mobile',
+          <MobileStep onAction={() => this.onStepAction(stepId)} />
+        );
         break;
       case STEP_ROUTES.nbn:
-        step = new StepModel(index, STEP_ROUTES.nbn, 'NBN', <NbnStep />);
+        step = new StepModel(
+          index,
+          STEP_ROUTES.nbn,
+          'NBN',
+          <NbnStep onAction={() => this.onStepAction(stepId)} />
+        );
         break;
       case STEP_ROUTES.summary:
-        step = new StepModel(index, STEP_ROUTES.summary, 'Summary', <SummaryStep />);
+        step = new StepModel(
+          index,
+          STEP_ROUTES.summary,
+          'Summary',
+          <SummaryStep onAction={() => this.onStepAction(stepId)} />
+        );
         break;
       case STEP_ROUTES.checkout:
-        step = new StepModel(index, STEP_ROUTES.checkout, 'Checkout', <CheckoutStep />);
+        step = new StepModel(
+          index,
+          STEP_ROUTES.checkout,
+          'Checkout',
+          <CheckoutStep onAction={() => this.onStepAction(stepId)} />
+        );
         break;
       default:
-        step = new StepModel(index, STEP_ROUTES.plan, 'Plan Configurator', <PlanConfigStep />);
+        step = new StepModel(
+          index,
+          STEP_ROUTES.plan,
+          'Plan Configurator',
+          <PlanConfigStep onAction={() => this.onStepAction(stepId)} />
+        );
     }
     return step;
+  };
+
+  onStepAction = stepId => {
+    switch (stepId) {
+      case STEP_ROUTES.abanCart:
+        console.log(STEP_ROUTES.abanCart, 'actions');
+        break;
+      case STEP_ROUTES.adsl:
+        console.log(STEP_ROUTES.adsl, 'actions');
+        break;
+      case STEP_ROUTES.mobile:
+        console.log(STEP_ROUTES.mobile, 'actions');
+        break;
+      case STEP_ROUTES.nbn:
+        console.log(STEP_ROUTES.nbn, 'actions');
+        break;
+      case STEP_ROUTES.summary:
+        console.log(STEP_ROUTES.summary, 'actions');
+        break;
+      case STEP_ROUTES.checkout:
+        console.log(STEP_ROUTES.checkout, 'actions');
+        break;
+      default:
+        console.log('Step general actions');
+    }
   };
 
   render() {
