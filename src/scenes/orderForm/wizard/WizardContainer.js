@@ -21,6 +21,7 @@ const WizardContainer = props => {
   // console.log('WizardContainer', props);
   // Methods
 
+  // JSX
   const getSteps = () => {
     let steps = [];
     for (let i = 0; i < props.userConfig.length; i++) {
@@ -131,7 +132,12 @@ const WizardContainer = props => {
         render={({ history }) => (
           <Wizard history={history}>
             <div className="steps">
-              <Steps>{getSteps().map(step => step.component)}</Steps>
+              <Steps>
+                {getSteps().map(step => step.component)}
+                <Step key id={props.routes.plan.id}>
+                  <PlanConfigStep />
+                </Step>
+              </Steps>
             </div>
             <WizardNavigation />
           </Wizard>

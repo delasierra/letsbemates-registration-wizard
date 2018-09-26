@@ -6,6 +6,7 @@ const Timeline = props => {
   /* TODO: 
   * Make real UI
   */
+  // Getting the index to show all the steps previus to the active
   const getStepIndex = stepId => {
     for (let i = 0; i < props.steps.length; i++) {
       if (stepId == props.steps[i].id) {
@@ -15,6 +16,7 @@ const Timeline = props => {
     return 0;
   };
 
+  // add right styles to links
   const getStateStyle = (stepIndex, props) => {
     const currentStepId = props.location.pathname.substr(1);
     const activeStepIndex = getStepIndex(currentStepId);
@@ -40,6 +42,7 @@ const Timeline = props => {
 
   return (
     <nav className="timeline">
+      {console.log(props.steps)}
       <button
         className="navbar-toggler"
         type="button"
