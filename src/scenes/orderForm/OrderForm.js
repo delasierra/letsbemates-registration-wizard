@@ -5,9 +5,9 @@ import WizardContainer from './wizard/WizardContainer';
 import OrderFormStaticData from './OrderFormStaticData';
 class OrderForm extends Component {
   // TODO: create this var dynamic from plan configuration (state?)
-  data;
   userPlanConfiguration = []; // TODO: this should be an action
   wizardSteps = [];
+
   constructor(props) {
     super(props);
     this.localDataService = new OrderFormStaticData();
@@ -37,7 +37,9 @@ class OrderForm extends Component {
     return (
       <div className="row order-form">
         <Timeline steps={this.wizardSteps} />
-        <div className="col-sm-8">{<WizardContainer steps={this.wizardSteps} />}</div>
+        <div className="col-sm-8">
+          {<WizardContainer steps={this.wizardSteps} stepId={this.localDataService.STEP_IDS} />}
+        </div>
         <div className="col-sm-4">
           <ShoppingCart />
         </div>

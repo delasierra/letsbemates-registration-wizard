@@ -24,69 +24,62 @@ const WizardContainer = props => {
   // JSX
   const getSteps = () => {
     let steps = [];
-    for (let i = 0; i < props.userConfig.length; i++) {
-      steps.push(getStep(i, props.userConfig[i]));
+    for (let i = 0; i < props.steps.length; i++) {
+      steps.push(getStep(props.steps[i]));
     }
     return steps;
   };
 
-  const getStep = (index, stepId) => {
+  const getStep = stepData => {
     let step;
-    switch (stepId) {
-      case props.routes.abanCart:
-        step = new StepModel(
-          index,
-          props.routes.abanCart,
-          props.labels.abanCart,
-          <AbandonedCart onAction={() => onStepAction(stepId)} />
+    switch (stepData.id) {
+      case props.stepId.abanCart:
+        step = (
+          <Step id={props.stepId.abanCart}>
+            <AbandonedCart onAction={() => onStepAction(stepData.id)} />
+          </Step>
         );
         break;
-      case props.routes.adsl:
-        step = new StepModel(
-          index,
-          props.routes.adsl,
-          props.labels.adsl,
-          <AdslStep onAction={() => onStepAction(stepId)} />
+      case props.stepId.adsl:
+        step = (
+          <Step id={props.stepId.adsl}>
+            <AdslStep onAction={() => onStepAction(stepData.id)} />
+          </Step>
         );
         break;
-      case props.routes.mobile:
-        step = new StepModel(
-          index,
-          props.routes.mobile,
-          'Mobile',
-          <MobileStep onAction={() => onStepAction(stepId)} />
+      case props.stepId.mobile:
+        step = (
+          <Step id={props.stepId.mobile}>
+            <MobileStep onAction={() => onStepAction(stepData.id)} />
+          </Step>
         );
         break;
-      case props.routes.nbn:
-        step = new StepModel(
-          index,
-          props.routes.nbn,
-          'NBN',
-          <NbnStep onAction={() => onStepAction(stepId)} />
+      case props.stepId.nbn:
+        step = (
+          <Step id={props.stepId.nbn}>
+            <NbnStep onAction={() => onStepAction(stepData.id)} />
+          </Step>
         );
         break;
-      case props.routes.summary:
-        step = new StepModel(
-          index,
-          props.routes.summary,
-          'Summary',
-          <SummaryStep onAction={() => onStepAction(stepId)} />
+      case props.stepId.summary:
+        step = (
+          <Step id={props.stepId.summary}>
+            <SummaryStep onAction={() => onStepAction(stepData.id)} />
+          </Step>
         );
         break;
-      case props.routes.checkout:
-        step = new StepModel(
-          index,
-          props.routes.checkout,
-          'Checkout',
-          <CheckoutStep onAction={() => onStepAction(stepId)} />
+      case props.stepId.checkout:
+        step = (
+          <Step id={props.stepId.checkout}>
+            <CheckoutStep onAction={() => onStepAction(stepData.id)} />
+          </Step>
         );
         break;
       default:
-        step = new StepModel(
-          index,
-          props.routes.plan,
-          'Plan Configurator',
-          <PlanConfigStep onAction={() => onStepAction(stepId)} />
+        step = (
+          <Step id={props.stepId.plan}>
+            <PlanConfigStep onAction={() => onStepAction(stepData.id)} />
+          </Step>
         );
     }
     return step;
@@ -117,27 +110,13 @@ const WizardContainer = props => {
     }
   };
 
-  let steps = getSteps();
-  // const steps = props.steps.map(step => {
-  //   return (
-  //     <Step key={step.id} id={step.id}>
-  //       {step.component}
-  //     </Step>
-  //   );
-  // });
-
   return (
     <div className="wizard-container">
       <Route
         render={({ history }) => (
           <Wizard history={history}>
             <div className="steps">
-              <Steps>
-                {getSteps().map(step => step.component)}
-                <Step key id={props.routes.plan.id}>
-                  <PlanConfigStep />
-                </Step>
-              </Steps>
+              <Steps>{getSteps()}</Steps>
             </div>
             <WizardNavigation />
           </Wizard>
