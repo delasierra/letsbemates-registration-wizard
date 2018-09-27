@@ -9,7 +9,7 @@ const Timeline = props => {
   // Getting the index to show all the steps previus to the active
   const getStepIndex = stepId => {
     for (let i = 0; i < props.steps.length; i++) {
-      if (stepId == props.steps[i].id) {
+      if (stepId === props.steps[i].id) {
         return props.steps[i].index;
       }
     }

@@ -1,93 +1,82 @@
-class OrderFormStaticData {
-  STEP_IDS = {
-    abanCart: 'abandonedCart',
-    plan: 'plan',
-    adsl: 'adsl',
-    nbn: 'nbn',
-    mobile: 'mobile',
-    summary: 'summary',
-    checkout: 'checkout'
-  };
+const STEP_IDS = {
+  abanCart: 'abandonedCart',
+  plan: 'plan',
+  adsl: 'adsl',
+  nbn: 'nbn',
+  mobile: 'mobile',
+  summary: 'summary',
+  userData: 'userData',
+  payment: 'payment'
+};
 
-  STEP_MENU_LABELS = {
-    abanCart: 'Abandoned Cart',
-    plan: 'Configure your plan',
-    adsl: 'ADSL',
-    nbn: 'NBN',
-    mobile: 'Mobile',
-    summary: 'Summary',
-    checkout: 'Checkout'
-  };
+const STEP_MENU_LABELS = {
+  abanCart: 'Abandoned Cart',
+  plan: 'Configure your plan',
+  adsl: 'ADSL',
+  nbn: 'NBN',
+  mobile: 'Mobile',
+  summary: 'Summary',
+  userData: 'User data',
+  payment: 'Payment'
+};
 
-  steps = [
-    {
-      index: 0,
-      id: this.STEP_IDS.plan,
-      route: this.STEP_IDS.plan,
-      label: this.STEP_MENU_LABELS.plan
-    },
-    {
-      index: 1,
-      id: this.STEP_IDS.abanCart,
-      route: this.STEP_IDS.abanCart,
-      label: this.STEP_MENU_LABELS.abanCart
-    },
-    {
-      index: 2,
-      id: this.STEP_IDS.adsl,
-      route: this.STEP_IDS.adsl,
-      label: this.STEP_MENU_LABELS.adsl
-    },
-    {
-      index: 2,
-      id: this.STEP_IDS.nbn,
-      route: this.STEP_IDS.nbn,
-      label: this.STEP_MENU_LABELS.nbn
-    },
-    {
-      index: 3,
-      id: this.STEP_IDS.mobile,
-      route: this.STEP_IDS.mobile,
-      label: this.STEP_MENU_LABELS.mobile
-    },
-    {
-      index: 4,
-      id: this.STEP_IDS.summary,
-      route: this.STEP_IDS.summary,
-      label: this.STEP_MENU_LABELS.summary
-    },
-    {
-      index: 5,
-      id: this.STEP_IDS.checkout,
-      route: this.STEP_IDS.checkout,
-      label: this.STEP_MENU_LABELS.checkout
-    }
-  ];
+const STEPS = [
+  {
+    index: 0,
+    id: STEP_IDS.plan,
+    route: STEP_IDS.plan,
+    labels: STEP_MENU_LABELS.plan,
+    inputData: {}
+  },
+  {
+    index: 1,
+    id: STEP_IDS.abanCart,
+    route: STEP_IDS.abanCart,
+    labels: STEP_MENU_LABELS.abanCart,
+    iputData: {}
+  },
+  {
+    index: 2,
+    id: STEP_IDS.adsl,
+    route: STEP_IDS.adsl,
+    labels: STEP_MENU_LABELS.adsl,
+    inputData: {}
+  },
+  {
+    index: 2,
+    id: STEP_IDS.nbn,
+    route: STEP_IDS.nbn,
+    labels: STEP_MENU_LABELS.nbn,
+    inputData: {}
+  },
+  {
+    index: 3,
+    id: STEP_IDS.mobile,
+    route: STEP_IDS.mobile,
+    labels: STEP_MENU_LABELS.mobile,
+    iputData: {}
+  },
+  {
+    index: 4,
+    id: STEP_IDS.summary,
+    route: STEP_IDS.summary,
+    labels: STEP_MENU_LABELS.summary,
+    iputData: {}
+  },
+  {
+    index: 5,
+    id: STEP_IDS.userData,
+    route: STEP_IDS.userData,
+    labels: STEP_MENU_LABELS.userData,
+    iputData: {}
+  },
+  {
+    index: 6,
+    id: STEP_IDS.payment,
+    route: STEP_IDS.payment,
+    labels: STEP_MENU_LABELS.payment,
+    iputData: {}
+  }
+];
 
-  getWizardSteps = userPlanConfig => {
-    let wizardSteps = [];
-    for (var i = 0; i < userPlanConfig.length; i++) {
-      let stepId = userPlanConfig[i];
-      wizardSteps.push(this.getStepById(stepId));
-    }
-    return wizardSteps.sort(this.sortWizardSteps);
-  };
-
-  sortWizardSteps = (a, b) => {
-    if (a.index < b.index) return -1;
-    if (a.index > b.index) return 1;
-    return 0;
-  };
-
-  getStepById = id => {
-    let step;
-    for (var i = 0; i < this.steps.length; i++) {
-      if (id === this.steps[i].id) {
-        step = this.steps[i];
-      }
-    }
-    return step;
-  };
-}
-
-export default OrderFormStaticData;
+export { STEPS, STEP_IDS, STEP_MENU_LABELS };
