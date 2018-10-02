@@ -1,5 +1,5 @@
 const OrderFormState = {
-  servicesContratted: {
+  products: {
     internet: {
       type: '',
       modem: true,
@@ -18,18 +18,19 @@ const OrderFormState = {
     phone: ''
   },
 
-  deliveryAddress: {
+  deliveryData: {
     gnaf_id: '',
     address: '',
     userNotes: ''
   },
 
   bussinessData: {
-    name: '',
+    businessName: '',
     abn: ''
   },
 
   terms: true,
+
   paymentData: {
     name: '',
     surname: '',

@@ -1,8 +1,8 @@
 import React from 'react';
 
-const NbnFlow = props => (
-  //
-  <h1>This is NbnFlow component</h1>
-);
+const NbnStep = props => {
+  console.log('NbnStep', props);
+  return <h1>This is NbnStep component</h1>;
+};
 
-export default NbnFlow;
+export default NbnStep;

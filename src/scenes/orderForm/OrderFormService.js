@@ -1,6 +1,15 @@
-import { STEPS } from './OrderFormStaticData';
+import { STEPS_INIT_DATA, STEP_IDS } from './OrderFormStaticData';
 
 class OrderFormService {
+  // Step logic
+  getStepIds = () => {
+    return STEP_IDS;
+  };
+
+  getStepInitData = () => {
+    return STEPS_INIT_DATA;
+  };
+
   getWizardSteps = userPlanConfig => {
     let wizardSteps = [];
     for (var i = 0; i < userPlanConfig.length; i++) {
@@ -18,9 +27,9 @@ class OrderFormService {
 
   getStepById = id => {
     let step;
-    for (var i = 0; i < STEPS.length; i++) {
-      if (id === STEPS[i].id) {
-        step = STEPS[i];
+    for (var i = 0; i < STEPS_INIT_DATA.length; i++) {
+      if (id === STEPS_INIT_DATA[i].id) {
+        step = STEPS_INIT_DATA[i];
       }
     }
     return step;

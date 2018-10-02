@@ -1,19 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class MobileFlow extends Component {
+const MobileStep = props => {
   /* TODO: 
   * Create states
   * Create the show hide flow depending on user selected options
   * Create the extra phone functionality
   */
+  console.log('MobileStep', props);
+  return (
+    <div>
+      <h1>This is MobileStep component</h1>
+    </div>
+  );
+};
 
-  render() {
-    return (
-      <div>
-        <h1>This is MobileFlow component</h1>
-      </div>
-    );
-  }
-}
-
-export default MobileFlow;
+export default MobileStep;

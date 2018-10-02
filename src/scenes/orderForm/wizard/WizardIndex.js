@@ -20,10 +20,11 @@ const WizardIndex = props => {
   // console.log('WizardContainer', props);
   // Methods
 
+  // console.log(props.products);
   // JSX
+  console.log(props.bussinessData);
   const getSteps = () => {
     let steps = [];
-    console.log(props.steps);
     for (let i = 0; i < props.steps.length; i++) {
       steps.push(getStep(props.steps[i]));
     }
@@ -31,43 +32,63 @@ const WizardIndex = props => {
   };
 
   const getStep = stepData => {
-    let step;
-    // console.log(stepData);
+    let DynamicStep;
+    let inputData;
+    // console.log('stepData', stepData);
     // TODO: distribute state vars on right order to steps FROM SERVICE??
     switch (stepData.id) {
       case props.stepId.abanCart:
-        step = <AbandonedCart data={stepData} onAction={props.onStepAction} />;
+        DynamicStep = AbandonedCart;
+        inputData = {
+          email: props.userData.email,
+          name: props.userData.name,
+          surname: props.userData.surname
+        };
         break;
 
       case props.stepId.adsl:
-        step = <AdslStep data={stepData} onAction={props.onStepAction} />;
+        DynamicStep = AdslStep;
+        inputData = { ...props.products.internet };
+        break;
+
+      case props.stepId.nbn:
+        DynamicStep = NbnStep;
+        inputData = { ...props.products.internet };
         break;
 
       case props.stepId.mobile:
-        step = <MobileStep data={stepData} onAction={props.onStepAction} />;
-        break;
-      case props.stepId.nbn:
-        step = <NbnStep data={stepData} onAction={props.onStepAction} />;
-        break;
-
-      case props.stepId.summary:
-        step = <SummaryStep data={stepData} onAction={props.onStepAction} />;
+        DynamicStep = MobileStep;
+        inputData = { ...props.products.mobile };
         break;
 
       case props.stepId.userData:
-        step = <UserDataStep data={stepData} onAction={props.onStepAction} />;
+        DynamicStep = UserDataStep;
+        inputData = {
+          ...props.userData,
+          bussinessData: props.bussinessData,
+          terms: props.terms,
+          deliveryData: props.deliveryData
+        };
         break;
 
       case props.stepId.payment:
-        step = <PaymentStep data={stepData} onAction={props.onStepAction} />;
+        DynamicStep = PaymentStep;
+        inputData = { ...props.payment };
+        break;
+
+      case props.stepId.summary:
+        DynamicStep = SummaryStep;
+        inputData = { ...props };
         break;
 
       default:
-        step = <PlanConfigStep data={stepData} onAction={props.onStepAction} />;
+        DynamicStep = PlanConfigStep;
+        inputData = { ...props.products };
     }
+
     return (
       <Step key={stepData.id} id={stepData.id}>
-        {step}
+        <DynamicStep {...inputData} labels={stepData.labels} onAction={props.onStepAction} />
       </Step>
     );
   };

@@ -1,11 +1,12 @@
 import React from 'react';
 
-const AdslFlow = props => (
+const AdslStep = props => {
   /* TODO:
   * Create the show hide flow depending on user selected options
   * Create real fields with validation
   */
-  <h1>This is AdslFlow component</h1>
-);
+  console.log('AdslStep', props);
+  return <h1>This is AdslStep component</h1>;
+};
 
-export default AdslFlow;
+export default AdslStep;

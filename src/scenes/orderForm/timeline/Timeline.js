@@ -35,14 +35,13 @@ const Timeline = props => {
         to={step.id}
         className={'nav-item nav-link ' + getStateStyle(step.index, props)}
       >
-        {step.label}
+        {step.labels.link}
       </NavLink>
     );
   });
 
   return (
     <nav className="timeline">
-      {console.log(props.steps)}
       <button
         className="navbar-toggler"
         type="button"

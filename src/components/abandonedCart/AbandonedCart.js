@@ -5,11 +5,12 @@ function AbandonedCart(props) {
   * Create real fields with validation
   * trigger API call
   */
+  console.log('AbandonedCart', props);
 
   return (
     <div className="bandoned-cart">
       <div className="form-group">
-        <label for="exampleInputEmail1">Email address</label>
+        <label htmlFor="exampleInputEmail1">Email address</label>
         <input
           type="email"
           className="form-control"
@@ -23,7 +24,7 @@ function AbandonedCart(props) {
       </div>
 
       <div className="form-group">
-        <label for="exampleInputEmail1">Name</label>
+        <label htmlFor="exampleInputEmail1">Name</label>
         <input
           type="name"
           className="form-control"
@@ -37,7 +38,7 @@ function AbandonedCart(props) {
       </div>
 
       <div className="form-group">
-        <label for="exampleInputEmail1">Surname</label>
+        <label htmlFor="exampleInputEmail1">Surname</label>
         <input
           type="surname"
           className="form-control"

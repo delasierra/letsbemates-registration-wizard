@@ -1,7 +1,4 @@
 const PlanConfigStepModel = {
-  index: null,
-  id: '',
-  route: '',
   labels: {},
   inputData: {
     internet: {

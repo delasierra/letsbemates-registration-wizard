@@ -2,7 +2,7 @@ import React from 'react';
 
 const PaymentStep = props => {
   // TODO: Create buttons to add services to add logic
-  // console.log(props);
+  console.log('PaymentStep', props);
 
   return (
     <div>
