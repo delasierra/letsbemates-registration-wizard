@@ -40,10 +40,10 @@ class OrderForm extends Component {
   // }
 
   // event handlers
-  onStepAction = data => e => {
-    console.log('onStepAction', data);
-    // console.log('onStepAction', e.target);
-    // console.log('onStepAction', stepId, data);
+  onWizardUpdates = data => e => {
+    console.log('onWizardUpdates', data);
+    // console.log('onWizardUpdates', e.target);
+    // console.log('onWizardUpdates', stepId, data);
     // console.log('Event', e);
     // switch (stepId) {
     //   case props.routes.abanCart:
@@ -80,7 +80,7 @@ class OrderForm extends Component {
               {...this.state}
               steps={this.wizardSteps}
               stepId={this.stepIds}
-              onStepAction={this.onStepAction}
+              onWizardUpdates={this.onWizardUpdates}
             />
           }
         </div>

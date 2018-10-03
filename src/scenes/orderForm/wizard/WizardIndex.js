@@ -35,7 +35,6 @@ const WizardIndex = props => {
     let DynamicStep;
     let inputData;
     // console.log('stepData', stepData);
-    // TODO: distribute state vars on right order to steps FROM SERVICE??
     switch (stepData.id) {
       case props.stepId.abanCart:
         DynamicStep = AbandonedCart;
@@ -88,9 +87,38 @@ const WizardIndex = props => {
 
     return (
       <Step key={stepData.id} id={stepData.id}>
-        <DynamicStep {...inputData} labels={stepData.labels} onAction={props.onStepAction} />
+        <DynamicStep {...inputData} labels={stepData.labels} onAction={onStepAction} />
       </Step>
     );
+  };
+
+  const onStepAction = data => e => {
+    console.log('onStepAction', e.target.value, data);
+    // console.log('onStepAction', e.target);
+    // console.log('onStepAction', stepId, data);
+    // console.log('Event', e);
+    // switch (stepId) {
+    //   case props.routes.abanCart:
+    //     console.log(props.routes.abanCart, 'actions');
+    //     break;
+    //   case props.routes.adsl:
+    //     console.log(props.routes.adsl, 'actions');
+    //     break;
+    //   case props.routes.mobile:
+    //     console.log(props.routes.mobile, 'actions');
+    //     break;
+    //   case props.routes.nbn:
+    //     console.log(props.routes.nbn, 'actions');
+    //     break;
+    //   case props.routes.summary:
+    //     console.log(props.routes.summary, 'actions');
+    //     break;
+    //   case props.routes.checkout:
+    //     console.log(props.routes.checkout, 'actions');
+    //     break;
+    //   default:
+    //     console.log('Step general actions');
+    // }
   };
 
   return (

@@ -1,12 +1,11 @@
 const PlanConfigStepModel = {
+  id: '',
   labels: {},
-  inputData: {
-    internet: {
-      type: '',
-      modem: true,
-      homePhone: {}
-    },
-    mobile: []
+  products: {
+    internet: null,
+    homePhone: null,
+    modem: null,
+    mobile: null
   }
 };
 

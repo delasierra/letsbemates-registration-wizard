@@ -1,11 +1,25 @@
-const OrderFormState = {
+let OrderFormState = {
   products: {
     internet: {
+      addToCart: true,
       type: '',
-      modem: true,
-      homePhone: {}
+      plan: ''
     },
-    mobile: []
+
+    homePhone: {
+      addToCart: true,
+      data: []
+    },
+
+    modem: {
+      addToCart: true,
+      data: []
+    },
+
+    mobile: {
+      addToCart: true,
+      data: []
+    }
   },
 
   userData: {
