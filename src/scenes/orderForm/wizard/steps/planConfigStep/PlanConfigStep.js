@@ -18,7 +18,7 @@ const PlanConfigStep = props => {
   const updateStepData = value => {
     console.log(updateStepData);
     stepData.products.internet = value;
-    props.onAction(stepData.products);
+    // props.onAction(stepData.products);
   };
 
   return (
@@ -32,7 +32,7 @@ const PlanConfigStep = props => {
           type="button"
           value={props.internet.addToCart}
           checked={props.internet.addToCart}
-          onClick={() => updateStepData(props.internet.addToCart)}
+          onClick={() => props.onAction}
         >
           I want Internet
         </button>
@@ -42,7 +42,7 @@ const PlanConfigStep = props => {
           type="button"
           value={!props.internet.addToCart}
           checked={!props.internet.addToCart}
-          onClick={() => updateStepData(!props.internet.addToCart)}
+          onClick={() => props.onAction}
         >
           I don't want internet
         </button>
@@ -69,7 +69,7 @@ const PlanConfigStep = props => {
       </div>
 
       <div className="col-sm-12">
-        <button className="btn btn-primary btn-lg" onClick={props.onAction(props.data, 1)}>
+        <button className="btn btn-primary btn-lg" onClick={props.onAction}>
           Next
         </button>
       </div>

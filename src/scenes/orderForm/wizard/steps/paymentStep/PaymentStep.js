@@ -7,7 +7,7 @@ const PaymentStep = props => {
   return (
     <div>
       <h1>This is PaymentStep component</h1>
-      <button className="btn btn-primary btn-lg" onClick={props.onAction(props.data, 1)}>
+      <button className="btn btn-primary btn-lg" onClick={props.onAction}>
         Next
       </button>
     </div>

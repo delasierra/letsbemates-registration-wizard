@@ -4,6 +4,7 @@ import ShoppingCart from '../../components/shoppingCart/ShoppingCart';
 import WizardIndex from './wizard/WizardIndex';
 import OrderFormService from './OrderFormService';
 import OrderFormState from './OrderFormState';
+
 class OrderForm extends Component {
   // TODO: create this var dynamic from plan configuration (state?)
   service;
@@ -12,16 +13,11 @@ class OrderForm extends Component {
   wizardSteps = [];
   state = OrderFormState;
 
-  constructor(props) {
-    super(props);
-    this.service = new OrderFormService();
-    this.stepIds = this.service.getStepIds();
-  }
-
   // Lifecicle hooks
   componentWillMount() {
-    // this.stateModel = new OrderFormStateModel();
-    this.userPlanConfig = [
+    this.service = new OrderFormService();
+    this.stepIds = this.service.getStepIds();
+    this.userStepsConfig = [
       // TODO: this should be updated in an action from plangConfigStep
       this.stepIds.plan,
       this.stepIds.abanCart,
@@ -32,37 +28,51 @@ class OrderForm extends Component {
       this.stepIds.userData,
       this.stepIds.payment
     ];
-    this.wizardSteps = this.service.getWizardSteps(this.userPlanConfig);
+    this.wizardSteps = this.service.getWizardSteps(this.userStepsConfig);
+    // TODO: add state to step props
   }
-  // Life hooks
-  // componentDidMount() {
-  //   console.log('OrderForm', this.props);
-  // }
 
-  // event handlers
-  onWizardUpdates = data => e => {
-    console.log('onWizardUpdates', data);
-    // console.log('onWizardUpdates', e.target);
-    // console.log('onWizardUpdates', stepId, data);
+  // Life hooks
+  componentWillReceiveProps(nextProps) {
+    // TODO: update props to state
+    console.log('componentWillReceiveProps', nextProps);
+  }
+
+  getSteps = () => {
+    let steps = [];
+    for (let i = 0; i < this.wizardSteps.length; i++) {
+      steps.push(this.getStep(this.wizardSteps[i]));
+    }
+    return steps;
+  };
+
+  getStep = stepData => {
+    return { ...this.service.setStepInputData(stepData, this.state) };
+  };
+
+  onStepAction = data => e => {
+    console.log('onStepAction', e.target.value, data);
+    // console.log('onStepAction', e.target);
+    // console.log('onStepAction', stepId, data);
     // console.log('Event', e);
     // switch (stepId) {
-    //   case props.routes.abanCart:
-    //     console.log(props.routes.abanCart, 'actions');
+    //   case this.state.routes.abanCart:
+    //     console.log(this.state.routes.abanCart, 'actions');
     //     break;
-    //   case props.routes.adsl:
-    //     console.log(props.routes.adsl, 'actions');
+    //   case this.state.routes.adsl:
+    //     console.log(this.state.routes.adsl, 'actions');
     //     break;
-    //   case props.routes.mobile:
-    //     console.log(props.routes.mobile, 'actions');
+    //   case this.state.routes.mobile:
+    //     console.log(this.state.routes.mobile, 'actions');
     //     break;
-    //   case props.routes.nbn:
-    //     console.log(props.routes.nbn, 'actions');
+    //   case this.state.routes.nbn:
+    //     console.log(this.state.routes.nbn, 'actions');
     //     break;
-    //   case props.routes.summary:
-    //     console.log(props.routes.summary, 'actions');
+    //   case this.state.routes.summary:
+    //     console.log(this.state.routes.summary, 'actions');
     //     break;
-    //   case props.routes.checkout:
-    //     console.log(props.routes.checkout, 'actions');
+    //   case this.state.routes.checkout:
+    //     console.log(this.state.routes.checkout, 'actions');
     //     break;
     //   default:
     //     console.log('Step general actions');
@@ -75,14 +85,7 @@ class OrderForm extends Component {
       <div className="row order-form">
         <Timeline steps={this.wizardSteps} />
         <div className="col-sm-8">
-          {
-            <WizardIndex
-              {...this.state}
-              steps={this.wizardSteps}
-              stepId={this.stepIds}
-              onWizardUpdates={this.onWizardUpdates}
-            />
-          }
+          {<WizardIndex {...this.state} steps={this.getSteps()} onStepAction={this.onStepAction} />}
         </div>
         <div className="col-sm-4">
           <ShoppingCart />

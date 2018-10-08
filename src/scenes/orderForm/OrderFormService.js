@@ -34,6 +34,55 @@ class OrderFormService {
     }
     return step;
   };
+
+  setStepInputData = (stepData, state) => {
+    const stepIds = this.getStepIds();
+    switch (stepData.id) {
+      case stepIds.abanCart:
+        stepData.inputData = {
+          email: state.userData.email,
+          name: state.userData.name,
+          surname: state.userData.surname
+        };
+        break;
+
+      case stepIds.adsl:
+        stepData.inputData = { ...state.products.internet };
+        break;
+
+      case stepIds.nbn:
+        stepData.inputData = { ...state.products.internet };
+        break;
+
+      case stepIds.mobile:
+        stepData.inputData = { ...state.products.mobile };
+        break;
+
+      case stepIds.userData:
+        stepData.inputData = {
+          ...state.userData,
+          bussinessData: state.bussinessData,
+          terms: state.terms,
+          deliveryData: state.deliveryData
+        };
+        break;
+
+      case stepIds.payment:
+        stepData.inputData = { ...state.payment };
+        break;
+
+      case stepIds.summary:
+        stepData.inputData = { ...state };
+        break;
+
+      default:
+        stepData.inputData = { ...state.products };
+    }
+
+    return {
+      ...stepData
+    };
+  };
 }
 
 export default OrderFormService;
